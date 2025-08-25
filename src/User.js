@@ -12,7 +12,6 @@ var DebugMode = false
 var CurrentSheetURLToUpdate = ""
 var CurrentSheetIdToUpdate = ""
 
-
 //------------------------------------------
 var Year = 2025;
 var CurrentMonth = "September"; // Make sure to put "" around the name

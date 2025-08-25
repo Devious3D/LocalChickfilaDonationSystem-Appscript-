@@ -130,6 +130,20 @@ function print(text) {
   Logger.log(text);
 }
 
+function GetSheet() {
+  let sheetInstance = SpreadsheetApp.openById(CurrentSheetIdToUpdate);
+  let currentDataSheet = sheetInstance.getSheetByName(NameOfYourSheet);
+
+  if (currentDataSheet == null) {
+    return;
+  }
+
+  print(`Getting Sheet: ${NameOfYourSheet}`);
+
+  return currentDataSheet;
+}
+
+
 //SpreadSheet_Vector 
 function SS_Vector() {
   return {
