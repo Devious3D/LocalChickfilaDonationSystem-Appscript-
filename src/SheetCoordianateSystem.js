@@ -56,11 +56,11 @@ function AddWeeksToWeekTotaling(Week) {
 function CacheImportantData() {
   print("Trying to Cache A1 positions");
 
-  let startingPosition = U_MakeA1Range();
-  startingPosition.startRow = 4;
-  startingPosition.endRow = 4;
-  startingPosition.startColumn = 0;
-  startingPosition.endColumn = 0;
+  let startingPosition = SS_Vector();
+  startingPosition.startRowIndex = 4;
+  startingPosition.endRowIndex = 4;
+  startingPosition.startColumnIndex = 0;
+  startingPosition.endColumnIndex = 0;
 
   for (;;) {
     let ToA1 = ConvertToA1Notation(startingPosition);
@@ -71,23 +71,20 @@ function CacheImportantData() {
     }
 
     DonationSheetCache.StartingCellPositions.push({
-      startRow: startingPosition.startRow,
-      endRow: startingPosition.endRow,
-      startColumn: startingPosition.startColumn,
-      endColumn: startingPosition.endColumn,
+      startRowIndex: startingPosition.startRowIndex,
+      endRowIndex: startingPosition.endRowIndex,
+      startColumnIndex: startingPosition.startColumnIndex,
+      endColumnIndex: startingPosition.endColumnIndex,
     });
 
-    startingPosition.endRow += DonationCellMeta.CellOffset;
-    startingPosition.startRow += DonationCellMeta.CellOffset;
+    startingPosition.endRowIndex += DonationCellMeta.CellOffset;
+    startingPosition.startRowIndex += DonationCellMeta.CellOffset;
   }
 
   print(`Cell Positions`);
   print(DonationSheetCache.StartingCellPositions);
 
-  DonationSheetCache.CellValues = SheetsAPI.Values.batchGet(
-    CurrentSheetIdToUpdate,
-    { ranges: DonationSheetCache.StartingCellPositionsInA1 }
-  ).valueRanges;
+  DonationSheetCache.CellValues = SheetsAPI.Values.batchGet( CurrentSheetIdToUpdate,  { ranges: DonationSheetCache.StartingCellPositionsInA1 }).valueRanges;
   if (DonationSheetCache.CellValues != null) {
     print(`Cached A1 Positions: ${DonationSheetCache.CellValues}`);
   }
@@ -158,10 +155,10 @@ function AdvanceToPosition(Position) {
     // print(PositionCache[i]);
 
     PositionToReturn = SS_Vector();
-    PositionToReturn.startRowIndex = PositionCache[i].startRow - 1;
-    PositionToReturn.endRowIndex = PositionCache[i].endRow + 1;
-    PositionToReturn.startColumnIndex = PositionCache[i].startColumn; //this is staying the same becauase the positions are located in the A column
-    PositionToReturn.endColumnIndex = PositionCache[i].endColumn + 2;
+    PositionToReturn.startRowIndex = PositionCache[i].startRowIndex - 1;
+    PositionToReturn.endRowIndex = PositionCache[i].endRowIndex + 1;
+    PositionToReturn.startColumnIndex = PositionCache[i].startColumnIndex; //this is staying the same becauase the positions are located in the A column
+    PositionToReturn.endColumnIndex = PositionCache[i].endColumnIndex + 2;
 
     //print(PositionToReturn)
 

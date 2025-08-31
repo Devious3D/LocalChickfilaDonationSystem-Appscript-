@@ -157,8 +157,8 @@ function SS_Vector() {
 //This is only for converting ranges  
 function ConvertToA1Notation(Range) {
 
-  let start_Range = `${Letters[Range.startColumn]}${Range.startRow}`;
-  let end_Range = `${Letters[Range.endColumn]}${Range.endRow}`;
+  let start_Range = `${Letters[Range.startColumnIndex]}${Range.startRowIndex}`;
+  let end_Range = `${Letters[Range.endColumnIndex]}${Range.endRowIndex}`;
   let final_Range = `${NameOfYourSheet}!${start_Range}:${end_Range}`;
 
   return final_Range;

@@ -165,8 +165,51 @@ var ProductTotalsByWeekDayAndProduct = {
   5: {}
 }
 
-
+var ConditionalFormattingRules = null
 //=========================================================================================
+function GenerateConditionalFormatting() {
+
+
+  let OriginCell = AdvanceToPosition(1);
+  OriginCell.startColumnIndex += DonationCellMeta.MorningDayPartOffset;
+  OriginCell.endColumnIndex += DonationCellMeta.MorningDayPartOffset;
+
+  let OriginCellA1 = `${Letters[OriginCell.startColumnIndex]}${OriginCell.startRowIndex + 1}`;
+
+  let LastPosition  = AdvanceToPosition(AmountOfCellsToMake - 1);
+  LastPosition.startColumnIndex += DonationCellMeta.DinnerDayPartOffset;
+  LastPosition.endColumnIndex += DonationCellMeta.DinnerDayPartOffset;
+  LastPosition.startRowIndex += 3;
+  LastPosition.endColumnIndex += 4;
+
+  let LastPositionToA1 = `${Letters[LastPosition.startColumnIndex]}${LastPosition.startRowIndex + 1}`;
+
+  print(`${OriginCellA1}:${LastPositionToA1}`);
+
+  var Sheet = GetSheet();
+  const Ranges = Sheet.getRange(`${OriginCellA1}:${LastPositionToA1}`);
+
+  Sheet.clearConditionalFormatRules();
+
+  var CellConditionalFormatting = SpreadsheetApp.newConditionalFormatRule();
+  CellConditionalFormatting.setRanges([Ranges]);
+  CellConditionalFormatting.whenNumberBetween(0, 6);
+  CellConditionalFormatting.setGradientMidpointWithValue("#bbd780", SpreadsheetApp.InterpolationType.PERCENTILE, "0");
+  CellConditionalFormatting.setGradientMidpointWithValue("#f6b26b",SpreadsheetApp.InterpolationType.PERCENTILE,"4");
+  CellConditionalFormatting.setGradientMaxpointWithValue("#e06666", SpreadsheetApp.InterpolationType.PERCENTILE, "6");
+  CellConditionalFormatting.build();
+
+
+  var rules = Sheet.getConditionalFormatRules();
+  rules.push(CellConditionalFormatting);
+
+  Sheet.setConditionalFormatRules(rules);  
+
+  print("Applying New Rules");  
+}
+
+
+
 function CreateDonationTitles() {
   
   print(`Trying to create Main sheet titles`)
@@ -849,25 +892,6 @@ function CreateProductTotalsByWeek() {
 }
 
 
-
-function ApplyConditionalFormatting() {
-
-  let sheetInstance
-
-  switch (functionStandaloneMode) {
-    case true:
-    {
-
-    }
-
-    case false: 
-    {
-      
-    }
-  }
-
-
-}
 //=========================================================================================
 //=========================================================================================
 
@@ -890,9 +914,9 @@ function SheetDisplayMain() {
 
   //Title of the Donation Table
   FinalDonationRequests.push(CreateDonationTitles(sheetInstance)); 
-  CreateCellPositions()
+  CreateCellPositions();
   CacheImportantData();
-  AddWeeksToWeekTotaling()
+  AddWeeksToWeekTotaling();
 
   //This local is mainly used to count the weeks for the WeekTotaling function to do its job
   //Some Months dont start on a monday which is indexed as 1.
@@ -946,6 +970,8 @@ function SheetDisplayMain() {
   print(ProductCellPositionsOrderedByDayPart)
 
   SheetsAPI.batchUpdate({requests: FinalDonationRequests}, CurrentSheetIdToUpdate);
+
+   GenerateConditionalFormatting();
 }
 
 
