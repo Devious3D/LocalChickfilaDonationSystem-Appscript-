@@ -971,7 +971,7 @@ function SheetDisplayMain() {
 
   SheetsAPI.batchUpdate({requests: FinalDonationRequests}, CurrentSheetIdToUpdate);
 
-   GenerateConditionalFormatting();
+  //GenerateConditionalFormatting();
 }
 
 
