@@ -69,7 +69,7 @@ var DonationMergeMeta = {
 
 var DonationCellMeta = {
 
-  productOrder: ["Nuggets", "Strips", "Filets", "Spicy"],
+  productOrder: ["Nuggets", "Filets", "Spicy", "Strips"],
   dayPartOrder: ["Morning", "Afternoon", "Dinner"],
   TotalsForegroundColor: {red: .7, green: .4, blue: 0},
 
@@ -971,7 +971,7 @@ function SheetDisplayMain() {
 
   SheetsAPI.batchUpdate({requests: FinalDonationRequests}, CurrentSheetIdToUpdate);
 
-  //GenerateConditionalFormatting();
+   //GenerateConditionalFormatting();
 }
 
 
