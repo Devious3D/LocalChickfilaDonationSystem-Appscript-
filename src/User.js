@@ -14,8 +14,8 @@ var CurrentSheetIdToUpdate = ""
 
 //------------------------------------------
 var Year = 2025;
-var CurrentMonth = "December"; // Make sure to put "" around the name
-var NameOfYourSheet = "December"; // Make sure to put "" around the name
+var CurrentMonth = "January"; // Make sure to put "" around the name
+var NameOfYourSheet = "TestSheet"; // Make sure to put "" around the name
 //------------------------------------------
 
 function DetermineDebugMode() {

@@ -162,7 +162,8 @@ var ProductTotalsByWeekDayAndProduct = {
   2: {},
   3: {},
   4: {},
-  5: {}
+  5: {},
+  6: {}
 }
 
 var ConditionalFormattingRules = null
@@ -789,6 +790,7 @@ function CreateProductTotalsByWeek() {
         //Using rows to index from this table, they both so happen to range from 0-4
         //If this errors, that means theres a week with no information in it or theres too many weeks
         let TargetWeekday = ProductTotalsByWeekDayAndProduct[Weeks][CurrentDay.Name][DonationCellMeta.productOrder[rows - 1]]
+        if (TargetWeekday == null) {continue}
         productCount += 1
         
 
@@ -835,11 +837,12 @@ function CreateProductTotalsByWeek() {
 
     print("Inputted Totals from Main Sheet")
 
+    //Totaling each row
     //this loop goes across then down
     for (var row = 1; row < 5; row++) {
 
       let RangeData = {
-        LastPosition: BU_MakeUpdateCells(), // When this is inputed, I increment the colum to get the totals rowo
+        LastPosition: BU_MakeUpdateCells(), // When this is inputed, I increment the colum to get the totals row
         Ranges: []
       }
 
@@ -916,7 +919,7 @@ function SheetDisplayMain() {
   FinalDonationRequests.push(CreateDonationTitles(sheetInstance)); 
   CreateCellPositions();
   CacheImportantData();
-  AddWeeksToWeekTotaling();
+  AddWeeksToWeekTotaling(CurrentWeek);
 
   //This local is mainly used to count the weeks for the WeekTotaling function to do its job
   //Some Months dont start on a monday which is indexed as 1.
@@ -939,15 +942,15 @@ function SheetDisplayMain() {
       {
         CurrentDayOfTheWeek = 1
         StartCountingDays = true
-        print(StartCountingDays)
         continue
       }
 
       case false: 
       {
         CurrentDayOfTheWeek += 1
-
-        if (StartCountingDays) { DaysCounted += 1}    
+        DaysCounted += 1
+        
+        if (StartCountingDays) { }    
       }
     }
 

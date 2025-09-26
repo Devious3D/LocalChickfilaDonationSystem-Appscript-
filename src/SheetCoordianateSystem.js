@@ -39,7 +39,7 @@ function GetDayOfTheWeek(DayByNumberOrString) {
 function AddWeeksToWeekTotaling(Week) {
   for (var i = 1; i <= 7; i++) {
     let CurrentLoopDay = GetDayOfTheWeek(i);
-    ProductTotalsByWeekDayAndProduct[CurrentWeek][CurrentLoopDay.Name] = {
+    ProductTotalsByWeekDayAndProduct[Week][CurrentLoopDay.Name] = {
       Nuggets: 0,
       Strips: 0,
       Filets: 0,

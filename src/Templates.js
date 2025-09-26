@@ -43,84 +43,84 @@ var MonthIndex = [
     Name: "January",
     Month: 1,
     Days: 31,
-    Weeks: 4,
+    Weeks: 5,
     StartsOn: "Wednesday" 
   },
   February = {
     Name: "February",
     Month: 2,
     Days: 28,
-    Weeks: 4,
+    Weeks: 5,
     StartsOn: "Saturday"
   },
   March = {
     Name: "March",
     Month: 3,
     Days: 31,
-    Weeks: 5,
+    Weeks: 6,
     StartsOn: "Saturday"
   },
   April = {
     Name: "April",
     Month: 4,
     Days: 30,
-    Weeks: 4,
+    Weeks: 5,
     StartsOn: "Tuesday"
   },
   May = {
     Name: "May",
     Month: 5,
     Days: 31,
-    Weeks: 5,
+    Weeks: 6,
     StartsOn: "Thursday"
   },
   June = {
     Name: "June",
     Month: 6,
     Days: 30,
-    Weeks: 5,
+    Weeks: 6,
     StartsOn: "Sunday"
   },
   July = {
     Name: "July",
     Month: 7,
     Days: 31,
-    Weeks: 3,
+    Weeks: 4,
     StartsOn: "Tuesday"
   },
   August = {
     Name: "August",
     Month: 8,
     Days: 31,
-    Weeks: 5,
+    Weeks: 6,
     StartsOn: "Friday"
   },
   September = {
     Name: "September",
     Month: 9,
     Days: 30,
-    Weeks: 4,
+    Weeks: 5,
     StartsOn: "Monday"
   },
   October = {
     Name: "October",
     Month: 10,
     Days: 31,
-    Weeks: 4,
+    Weeks: 5,
     StartsOn: "Wednesday"
   },
   November = {
     Name: "November",
     Month: 11,
     Days: 30,
-    Weeks: 5,
+    Weeks: 6,
     StartsOn: "Saturday"
   },
   December = {
     Name: "December",
     Month: 12,
     Days: 31,
-    Weeks: 4,
+    Weeks: 5,
     StartsOn: "Monday"
   }
 ];
