@@ -954,11 +954,11 @@ function SheetDisplayMain() {
       }
     }
 
-    if  (DaysCounted == 7) {
+    if  (CurrentDayOfTheWeek == 7) {
         DaysCounted = 1
 
         CurrentWeek += 1
-        AddWeeksToWeekTotaling()
+        AddWeeksToWeekTotaling(CurrentWeek);
         print("Adding Week")
     }
  
